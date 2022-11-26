@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CustomArrayList<T> implements CustomList<T> {
-	public Object[] items = new Object[10];
+	Object[] items = new Object[10];
+
+	private int size = 0;
 
 	@Override
 	public boolean add(T item) {
 
-		if(Integer.valueOf(getSize()).equals(items.length)){
+		if(getSize() == items.length){
 
 			Object[] tempArray = new Object[items.length * 2];
 			int tempArrayIndex = 0;
@@ -18,22 +20,13 @@ public class CustomArrayList<T> implements CustomList<T> {
 		}
 
 		items[getSize()] = item;
+		size++;
 		return true;
 	}
 
 	@Override
 	public int getSize() {
-
-		int count = 0;
-
-		for(int i = 0; i <= items.length - 1;i++){
-			if(items[i] != null){
-				count++;
-			}
-		}
-
-		return count;
-
+		return size;
 	}
 
 	@Override
